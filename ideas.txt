@@ -1,0 +1,36 @@
+Modes de Jeu :
+       Mode 2 joueurs :
+       	Duel : 1 combi chacun choisie par joueur, premier qui trouve gagne. On entrelace les coups. tempo?
+	Tournoi : 1 combi chacun choisie par ordi, règles surivant / survivant extrême.
+	Mode ordinateur
+
+       Mode 1 joueur :
+       	Basique : 1 combi choisie par ordi, un nombre de coups (choisi ou non)
+	Survivant : plusieurs combinaisons, nombre de coups total limité, psbilité de regagner des coups
+
+Format des données :
+       Couleurs : chiffres de 0 à 7
+       Pions : 4 ou plus
+       Système de points
+       Dictionnaire :
+       	commentaires : #
+	lignes vides ignorées
+	chiffres correspondants à couleurs (0-7) séparés apr espaces. Si '?' => random non présente dans combi. si '*', random présente dans combi.
+
+
+
+Interface :
+	  Menus:
+		Choix 1/2 joueurs (nom des joueurs?)
+		Choix mode (Basique, survivant etc.)
+	  Affichage jeu :
+	  	Choix des combinaisons
+		differents modes de jeu
+	  	affichage fin, score final, gagnant
+
+
+Répartition des taches :
+	  Justine : affichage
+	  Gary : Mode 1 joueur
+	  Louis : dictionnaire
+	  Florent : Mode 2 joueurs
