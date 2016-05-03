@@ -50,10 +50,20 @@ void mono_joueur(void)
       if(bien_placés == NB_PIONS) 
 	{
 	  printf("Gagné!");
+	  nb_coups = -1;
 	}
       // affiche les compteurs "bien_placés" et "mal_placés"
       printf("bien placés: %d  mal placés: %d", bien_placés, mal_placés);
-
       // décrémente la variable "nb_coups = NB_COUPS"
+      nb_coups -= 1;
       // si "nb_coups == 0" affiche "Perdu!"
-      
+      if(nb_coups == 0)
+	{ 
+	  printf("Perdu!");
+	}
+    }//while
+}//END
+
+
+sol 1 2 3 4
+pro 3 1 2 4
