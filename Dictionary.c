@@ -1,30 +1,36 @@
-struct combinaison 
+int nb_combi_dict(FILE * dict) 
+// compte le nb de combinaisons dans le dictionnaire
 {
-  int nb_pion = 4; //par defaut 
-  int nb_couleur = 8;
-  int combi[nb_pion];
-};
-
-int nb_combi_dict(FILE * dict)
-{
-  char line[100];
+  char line[100] = "";
   int nb_line = 0;
   while(!feof(dict))
     {
-      fgets(line, 100, file);
-      if( )
-	nb_line ++;
-      else
-	}
-  return nb_line - 1; // on ne compte pas le titre
+      fgets(line, 100, dict);
+      if(line[0] != ' ' && line[0] != '#' && line[0] != '') nb_line ++;
+    }
+  
+  rewind(dict);
+  return nb_line;
 }
 
-struct combinaison get_combi_dict(FILE * dict)
+
+int random_number(FILE * dict)
+// prend en argument le nb de combi dans le dictionnaire et retourne en nombre aléatoire compris entre 0 et nb_combi_dict - 1
 {
-  char line[100];
-  int line_count =0;
-  while(!(feof(dict))
+  int rand_numb = rand() % nb_combi_dict(dict); //fnt dans stdlib.h
+  return rand_numb;
+}
+
+
+void get_combi_dict(FILE * dict, int * combi)
+{
+  char line[100] = "";
+  int line_count = 0;
+  while(line_count != random_number(dict) + 1)
     {
-      
+      if(line[0] != ' ' && line[0] != '#' && line[0] != '') line_count++;    
+      fgets(line, 100, dict);
     }
-    }
+  
+  
+}
