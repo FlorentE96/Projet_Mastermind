@@ -29,8 +29,8 @@ Format des données :
 	      int nb_pts
 	      int nb_coups
 	      tableau combi_a_trouver
-	      matrice combinaisons passées
-	      matrice resultats passés
+	      matrice combi_passe
+	      matrice resultats 
        Couleurs : chiffres de 0 à 7
        Pions : 4 ou plus
        Système de points
