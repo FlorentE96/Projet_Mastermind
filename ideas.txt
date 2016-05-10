@@ -9,6 +9,29 @@ Modes de Jeu :
 	Survivant : plusieurs combinaisons, nombre de coups total limité, psbilité de regagner des coups
 
 Format des données :
+       combinaison : tableau de 4 int.
+       dictionnaire : formatté (fopen)
+       fonction gestion_partie
+       		affiche interface,
+		récupère la saisie, la formatte
+		stocke la saisie dans structure joueur
+		appelle la bonne fonction jeu, en lui passant en parametre la structure joueur
+		si multijoueur, passe au joueur 2
+		(en boucle jusqu'à fin de la partie)
+	fonctions jeu :
+		 prend en entrée une structure joueur
+		 met à jour les champs de la structure joueur
+		 renvoit 0 si pas encore gagné, 1 si gagné
+       une fonction par mode de jeu, paramètre : 
+       fonction "comparaison" : paramètres : combi, essai, resultat ; void
+       struct joueurs{
+         char nom[TAILLE_MAX];
+	 int nb_pts;
+	 int nb_coups;
+	 int combi_a_trouver[NB_PIONS];
+	 int combi_passe[MAX_COMBI][NB_PIONS];
+     	 int resultats[MAX_COMBI][2];  
+  	}
        Couleurs : chiffres de 0 à 7
        Pions : 4 ou plus
        Système de points
@@ -16,7 +39,6 @@ Format des données :
        	commentaires : #
 	lignes vides ignorées
 	chiffres correspondants à couleurs (0-7) séparés apr espaces. Si '?' => random non présente dans combi. si '*', random présente dans combi.
-
 
 
 Interface :
