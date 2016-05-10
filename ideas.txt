@@ -30,7 +30,7 @@ Format des données :
 	      int nb_coups
 	      tableau combi_a_trouver
 	      matrice combinaisons passées
-	      matrice resultats passés
+	      matrice resultats passés : {{nombre pions bien placé ; nombre bonnes couleurs mal placées},...}
        Couleurs : chiffres de 0 à 7
        Pions : 4 ou plus
        Système de points
