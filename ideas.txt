@@ -24,13 +24,14 @@ Format des données :
 		 renvoit 0 si pas encore gagné, 1 si gagné
        une fonction par mode de jeu, paramètre : 
        fonction "comparaison" : paramètres : combi, essai, resultat ; void
-       joueur : structure,
-       	      char * nom
-	      int nb_pts
-	      int nb_coups
-	      tableau combi_a_trouver
-	      matrice combi_passe
-	      matrice resultats 
+       struct joueurs{
+         char nom[TAILLE_MAX];
+	 int nb_pts;
+	 int nb_coups;
+	 int combi_a_trouver[NB_PIONS];
+	 int combi_passe[MAX_COMBI][NB_PIONS];
+     	 int resultats[MAX_COMBI][2];  
+  	}
        Couleurs : chiffres de 0 à 7
        Pions : 4 ou plus
        Système de points
