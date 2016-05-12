@@ -1,4 +1,6 @@
 //suppr les define et include et struct une fois que le code sera fini et testé et le main aussi
+//changer le nom du fichier puisque la fonction n'est pas de la force brute
+//faire des stat pour savoir enc cb de coup moyen ça trouve
 
 #include <stdio.h>
 #define NB_PIONS (4)
