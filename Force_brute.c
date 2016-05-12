@@ -24,3 +24,5 @@ void  Algo_1(struct * joueur Ordi, int tab[NB_PION])
       comparaison(Ordi->combi_a_trouver,tab) 
     }
 }
+
+//test commit xCode
