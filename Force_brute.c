@@ -1,4 +1,3 @@
-//trouve la combi en comparant 1 par 1 les pions placés
 //suppr les define et include et struct une fois que le code sera fini et testé et le main aussi
 
 #include <stdio.h>
