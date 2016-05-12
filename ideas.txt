@@ -13,9 +13,9 @@ Format des données :
        dictionnaire : formatté (fopen)
        fonction gestion_partie
        		affiche interface,
-		récupère la saisie, la formatte
+		récupère la saisie, la formate
 		stocke la saisie dans structure joueur
-		appelle la bonne fonction jeu, en lui passant en parametre la structure joueur
+		appelle la bonne fonction jeu, en lui passant en paramètre la structure joueur
 		si multijoueur, passe au joueur 2
 		(en boucle jusqu'à fin de la partie)
 	fonctions jeu :
