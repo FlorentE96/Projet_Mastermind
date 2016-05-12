@@ -6,11 +6,11 @@ Modes de Jeu :
 
        Mode 1 joueur :
        	Basique : 1 combi choisie par ordi, un nombre de coups (choisi ou non)
-	Survivant : plusieurs combinaisons, nombre de coups total limité, psbilité de regagner des coups
+	Survivant : plusieurs combinaisons, nombre de coups total limité, posbilité de regagner des coups
 
 Format des données :
        combinaison : tableau de 4 int.
-       dictionnaire : formatté (fopen)
+       dictionnaire : formaté (fopen)
        fonction gestion_partie
        		affiche interface,
 		récupère la saisie, la formate
@@ -21,9 +21,9 @@ Format des données :
 	fonctions jeu :
 		 prend en entrée une structure joueur
 		 met à jour les champs de la structure joueur
-		 renvoit 0 si pas encore gagné, 1 si gagné
+		 réenvoit 0 si pas encore gagné, 1 si gagné
        une fonction par mode de jeu, paramètre : 
-       fonction "comparaison" : paramètres : combi, essai, resultat ; void
+       fonction "comparaison" : paramètres : combi, essai, résultat ; void
 <<<<<<< HEAD
        joueur : structure,
        	      char * nom
@@ -48,7 +48,7 @@ Format des données :
        Dictionnaire :
        	commentaires : #
 	lignes vides ignorées
-	chiffres correspondants à couleurs (0-7) séparés apr espaces. Si '?' => random non présente dans combi. si '*', random présente dans combi.
+	chiffres correspondants à couleurs (0-7) séparés par espaces. Si '?' => random non présente dans combi. si '*', random présente dans combi.
 
 
 Interface :
@@ -57,7 +57,7 @@ Interface :
 		Choix mode (Basique, survivant etc.)
 	  Affichage jeu :
 	  	Choix des combinaisons
-		differents modes de jeu
+		différents modes de jeu
 	  	affichage fin, score final, gagnant
 
 
