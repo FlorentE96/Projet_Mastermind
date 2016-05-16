@@ -36,6 +36,14 @@ void init_combi_val(int *tab, const int *ref, int from, int val)
     }
 }
 
+void copy_tab(int * source, int * destination, int taille)
+{
+    for(int i = 0; i < taille; i ++)
+    {
+        destination[i] = source[i];
+    }
+}
+
 void print_array_4 (int * tab)
 {
     for (int i =0; i<4; i++)
