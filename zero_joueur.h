@@ -3,7 +3,6 @@
 void init_tab();
 void init_combi_val();
 void copy_tab();
-void print_array_4();
 void print_array_n();
 void comparaison();
 
@@ -20,8 +19,6 @@ void algo_1(struct Joueur * joueur, int * essai)
         if(trouve[pos] != -1)
         {
             essai[pos] ++;
-//            print_array_4(essai);
-//            print_array_4(trouve);
             comparaison(joueur, essai);
             
             if(joueur->resultats_passes[joueur->nb_coups][0] > joueur->resultats_passes[joueur->nb_coups - 1][0])
@@ -51,8 +48,6 @@ void algo_1(struct Joueur * joueur, int * essai)
                 else
                 {
                     essai[pos_2] = essai[pos];
-//                    print_array_4(essai);
-//                    print_array_4(trouve);
                     comparaison(joueur, essai);
                     
                     if(joueur->resultats_passes[joueur->nb_coups][0] > joueur->resultats_passes[joueur->nb_coups - 1][0])
@@ -175,7 +170,6 @@ void test_algo_2(int * combinaison)
 void get_gnuplot_trace_algo_1(void)
 {
     int tableau_retourne[NB_PIONS];
-    double moyenne = 0;
     struct Joueur joueur;
     joueur.nb_coups = 0;
     int somme = 0;
@@ -206,7 +200,6 @@ void get_gnuplot_trace_algo_1(void)
                     joueur.combi_a_trouver[3] = l;
                     
                     algo_1(&joueur, tableau_retourne);
-                    //printf("la combinaison est : "); print_array_4(tableau_retourne);
                     
                     printf("%d ", num_exp);
                     printf("%d\n", joueur.nb_coups);
@@ -244,7 +237,6 @@ void get_average_value_algo_1(void)
                         joueur.combinaisons_passees[m][2] = 0;
                         joueur.combinaisons_passees[m][3] = 0;
                     }
-                    //num_exp = l + 10*k +100*j + 1000*i;
                     
                     joueur.combi_a_trouver[0] = i;
                     joueur.combi_a_trouver[1] = j;
@@ -252,9 +244,7 @@ void get_average_value_algo_1(void)
                     joueur.combi_a_trouver[3] = l;
                     
                     algo_1(&joueur, tableau_retourne);
-                    //printf("la combinaison est : "); print_array_4(tableau_retourne);
-                    
-                    //printf("%d ", num_exp);
+
                     somme += joueur.nb_coups;
                     joueur.nb_coups = 0;
                     

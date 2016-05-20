@@ -5,6 +5,7 @@
 #define NB_COULEURS (8)
 #define MAX_COMBI (10000)
 #define MAX_COUPS (100)
+#definine MAX_NAME (30)
 
 struct Joueur
 { char *nom;
@@ -44,15 +45,6 @@ void copy_tab(int * source, int * destination, int taille)
     }
 }
 
-void print_array_4 (int * tab)
-{
-    for (int i =0; i<4; i++)
-    {
-        printf("%d ", tab[i]);
-    }
-    printf("\n");
-}
-
 void print_array_n (int *tableau, int taille)
 {
     for (int i =0; i<taille; i++)
@@ -62,14 +54,11 @@ void print_array_n (int *tableau, int taille)
     printf("\n");
 }
 
-void comparaison (struct Joueur *joueur, int proposition[])
+void comparaison(struct Joueur *joueur, int proposition[])
 {
     joueur->nb_coups ++;
     int combi[NB_PIONS];
-    for (int i = 0; i < NB_PIONS; i ++)
-    {
-        combi[i] = joueur->combi_a_trouver[i];
-    }
+    copy_tab(joueur->combi_a_trouver, combi, NB_PIONS);
     
     for (int i = 0; i < NB_PIONS; i ++)
     {
@@ -93,3 +82,19 @@ void comparaison (struct Joueur *joueur, int proposition[])
         }
     }
 }
+
+void init_player_keep_score(struct Joueur *joueur)
+{
+    joueur->nb_coups = 0;
+    
+    for(int m = 0; m < MAX_COUPS; m++)
+    {
+        joueur->resultats_passes[m][0] = 0;
+        joueur->resultats_passes[m][1] = 0;
+        joueur->combinaisons_passees[m][0] = 0;
+        joueur->combinaisons_passees[m][1] = 0;
+        joueur->combinaisons_passees[m][2] = 0;
+        joueur->combinaisons_passees[m][3] = 0;
+    }
+}
+
