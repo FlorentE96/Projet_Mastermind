@@ -1,6 +1,5 @@
-main : fonctions.o zero_joueur.o
+main : fonctions.o zero_joueur.o main.o
 	gcc fonctions.o main.o zero_joueur.o -o main
-
 
 fonctions.o: fonctions.c fonctions.h
 	gcc -c -Wall -std=c99   fonctions.c
