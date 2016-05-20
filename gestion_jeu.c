@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdout.h>
-
-
+#include "fonctions.h"
 /*
        joueur : structure,
        	      char * nom
@@ -21,7 +20,7 @@ comparer : prend en paramètre une structure joueur, met à jour les champs "com
 
 */
 
-int multijoueur(struct Joueur * joueurs)
+int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnant (joueur 0 ou joueur 1)
 {
   /*
     afficher menu choix combinaison joueur 1
@@ -39,6 +38,7 @@ int multijoueur(struct Joueur * joueurs)
     
     return joueur gagnant
   */
+
   printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[1]->nom, joueurs[0]->nom);
   saisie_combi(joueurs[0]->combi_a_trouver);
   CLEAR_SCREEN;
@@ -52,7 +52,7 @@ int multijoueur(struct Joueur * joueurs)
   int i=1; // variable correspondant au joueur. on commence à 1 parce qu'on passe à l'autre joueur au début de la boucle
   
   do{
-    i = i?0,1; // passe à l'autre joueur
+    i = i?0:1; // passe à l'autre joueur
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]);
     saisie_combi(combi_saisie);
@@ -67,7 +67,7 @@ int multijoueur(struct Joueur * joueurs)
   return 1;
 }
 
-int monojoueur(struct Joueur * joueur)
+int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 {
   /*
     calc_combinaison
@@ -84,7 +84,7 @@ int monojoueur(struct Joueur * joueur)
 
   printf("quand vous êtes prêts, appuyez sur entrée...");
   getc();
-  
+  int combi_saisie[NB_PIONS];
   do{
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]);
@@ -97,4 +97,17 @@ int monojoueur(struct Joueur * joueur)
     else
       i=1;
   } while (!res && joueurs[0]->nb_coups <= NB_COUPS_MAX && joueurs[1]->nb_coups <= NB_COUPS_MAX);
+  if(res)
+    return 1;
+  return 0;
+}
+
+void afficher_jeu(struct Joueur * joueur)
+{
+  //
+}
+
+void saisie_combi(int * combi)
+{
+  //
 }
