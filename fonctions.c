@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "fonction.h"
+#include "fonctions.h"
 
 struct Joueur
 { char *nom;
@@ -42,7 +42,7 @@ void copy_tab(int * source, int * destination, int taille)
 
 void print_array_n (int *tableau, int taille)
 {
-    for (int i =0; i<taille; i++)
+    for (int i = 0; i<taille; i++)
     {
         printf("%d ", tableau[i]);
     }
