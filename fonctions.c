@@ -2,21 +2,17 @@
 #include <stdlib.h>
 #include "fonctions.h"
 
-struct Joueur
-{ char *nom;
-  int nb_pts;
-  int nb_coups;
-  int combi_a_trouver[NB_PIONS];
-  int combinaisons_passees[MAX_COUPS][NB_PIONS];
-  int resultats_passes[MAX_COUPS][2];
-};
 
+/* initialise la tableau de taille nb_case" pointé à la valeur "valeur"
+*/
 void init_tab(int * tab, int valeur, int nb_case)
 {
     for(int i = 0; i < nb_case; i++)
         tab[i] = valeur;
 }
 
+/* ce truc prend en entrée un tableau de taille NB_PION et initialise ce tableau à partir de la case "from" jusqu'à la fin sauf les cases ou il ya un "-1" dans le tableau "ref"
+*/
 void init_combi_val(int *tab, const int *ref, int from, int val)
 {
     int i = from;
@@ -32,6 +28,8 @@ void init_combi_val(int *tab, const int *ref, int from, int val)
     }
 }
 
+/* copie le tableau source dans le tableau destination sachant que leur taille est égale à taille 
+*/
 void copy_tab(int * source, int * destination, int taille)
 {
     for(int i = 0; i < taille; i ++)
@@ -49,6 +47,13 @@ void print_array_n (int *tableau, int taille)
     printf("\n");
 }
 
+/* compare la combinaison à trouver stockée dans le joueur "joueur" mis en entrée (pointeur), met à jour l'historique du joueur (combinaison passée, le résutat de la combinaison etc ) et incrémente le nombre de coups du joueur
+ attention : ce truc ne fait pas de remise à 0, c'est "init_player_keep_score" qui le fait 
+ Ce truc ne retourne rien
+ 
+ Avec tableau = {1, 2, 3, 4}
+ exemple : comparaison(&joueur_1, tableau)
+  */
 void comparaison(struct Joueur *joueur, int proposition[])
 {
     joueur->nb_coups ++;
@@ -78,6 +83,10 @@ void comparaison(struct Joueur *joueur, int proposition[])
     }
 }
 
+
+/* initalise à 0 les combinaison et les résultats du joueur pointé ainsi que son nombre de coups
+ Ne remet pas à 0 son nombre de points
+ */
 void init_player_keep_score(struct Joueur *joueur)
 {
     joueur->nb_coups = 0;

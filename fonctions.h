@@ -7,7 +7,14 @@
 #define MAX_COUPS (100)
 #define MAX_NAME (30)
 
-struct Joueur;
+struct Joueur
+{   char nom[MAX_NAME];
+    int nb_pts;
+    int nb_coups;
+    int combi_a_trouver[NB_PIONS];
+    int combinaisons_passees[MAX_COUPS][NB_PIONS];
+    int resultats_passes[MAX_COUPS][2];
+};
 
 void init_tab(int * tab, int valeur, int nb_case);
 

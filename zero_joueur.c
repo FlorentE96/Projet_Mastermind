@@ -1,6 +1,12 @@
+#include <stdio.h>
+#include <math.h>
 #include "fonctions.h"
 #include "zero_joueur.h"
 
+
+/*trouve la combinaison stockée dans le joueur "joueur"
+ le tableuau "essai" est un tableau de sortie qu'il faut creer avant et de taille NB_PION", il stocke la combinaison trouvée
+ */
 void algo_1(struct Joueur * joueur, int * essai)
 {
     int pos = 0;
@@ -62,6 +68,8 @@ void algo_1(struct Joueur * joueur, int * essai)
 }
 
 
+/*cet algo à la particularité de ne pas encore fonctionner
+ */
 void algo_2(struct Joueur * joueur, int * sortie)
 {
     int trouve[NB_PIONS];
@@ -120,6 +128,8 @@ void algo_2(struct Joueur * joueur, int * sortie)
     } while(joueur->resultats_passes[joueur->nb_coups][0] != NB_PIONS);
 }
 
+/*affiche la combinaison trouvée par l'algorythme 1 lorsque l'on met en entrée la combi "combinaison"
+ */
 void test_algo_1(int * combinaison)
 {
     int sortie[NB_PIONS];
@@ -141,6 +151,8 @@ void test_algo_1(int * combinaison)
     print_array_n(sortie, NB_PIONS);
 }
 
+/*la même chose pour l'algorythme 2
+ */
 void test_algo_2(int * combinaison)
 {
     int sortie[NB_PIONS];
@@ -162,6 +174,13 @@ void test_algo_2(int * combinaison)
     print_array_n(sortie, NB_PIONS);
 }
 
+/*ce truc affiche tous les couples (combinaison, nb essai) de algo 1 pour faire des stats
+ pour visualisser le résultats : 
+ - make
+ - ./main>graph
+ - gnuplot
+ - plot "graph" with line
+ */
 void get_gnuplot_trace_algo_1(void)
 {
     int tableau_retourne[NB_PIONS];
@@ -170,13 +189,13 @@ void get_gnuplot_trace_algo_1(void)
     int somme = 0;
     int num_exp = 0;
     
-    for(int i = 0; i < 10; i ++)
+    for(int i = 0; i < NB_COULEURS; i ++)
     {
-        for(int j = 0; j < 10; j ++)
+        for(int j = 0; j < NB_COULEURS; j ++)
         {
-            for(int k = 0; k < 10; k ++)
+            for(int k = 0; k < NB_COULEURS; k ++)
             {
-                for(int l = 0; l < 10; l ++)
+                for(int l = 0; l < NB_COULEURS; l ++)
                 {
                     for(int m = 0; m < MAX_COUPS; m++)
                     {
@@ -206,6 +225,9 @@ void get_gnuplot_trace_algo_1(void)
     }
 }
 
+/*renvoie l'espérence du nombre de coup pour que le 1er algo trouve la combinaison
+ en pratique toutes les combi sont testées et la moyenne est faite
+ */
 void get_average_value_algo_1(void)
 {
     int tableau_retourne[NB_PIONS];
@@ -215,13 +237,13 @@ void get_average_value_algo_1(void)
     int somme = 0;
     //int num_exp = 0;
     
-    for(int i = 0; i < 10; i ++)
+    for(int i = 0; i < NB_COULEURS; i ++)
     {
-        for(int j = 0; j < 10; j ++)
+        for(int j = 0; j < NB_COULEURS; j ++)
         {
-            for(int k = 0; k < 10; k ++)
+            for(int k = 0; k < NB_COULEURS; k ++)
             {
-                for(int l = 0; l < 10; l ++)
+                for(int l = 0; l < NB_COULEURS; l ++)
                 {
                     for(int m = 0; m < MAX_COUPS; m++)
                     {
@@ -248,6 +270,6 @@ void get_average_value_algo_1(void)
         }
     }
     
-    moyenne = somme/10000;
+    moyenne = somme/(pow(NB_COULEURS, NB_PIONS));
     printf("Moyenne du nombre de coup nécessaires : %.0f\n", moyenne);
 }
