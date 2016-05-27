@@ -1,24 +1,6 @@
 #include <stdlib.h>
 #include <stdout.h>
 #include "fonctions.h"
-/*
-       joueur : structure,
-       	      char * nom
-	      int nb_pts
-	      int nb_coups
-	      tableau combi_a_trouver
-	      matrice combinaisons passées
-	      matrice resultats passés : {{nombre pions bien placé ; nombre bonnes couleurs mal placées},...}
-
-comparer : prend en paramètre une structure joueur, met à jour les champs "combinaisons passées" et "resultats passés"
-
-
-       Mode 2 joueurs :
-       	Duel : 1 combi chacun choisie par joueur, premier qui trouve gagne. On entrelace les coups. tempo?
-	Tournoi : 1 combi chacun choisie par ordi, règles survivant / survivant extrême.
-	Mode ordinateur
-
-*/
 
 int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnant (joueur 0 ou joueur 1)
 {
@@ -26,24 +8,24 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     afficher menu choix combinaison joueur 1
     afficher menu choix combinaison joueur 2
 
-    tant que personne n'a gagné : 
+    faire:
+	joueur suivant
 	effacer ecran
-        afficher joueur i
+        afficher jeu joueur
         attendre saisie
-	incrementer nb_coups
-	comparer combi à trouver autre joueur
-	afficher resultat
-	tempo
-	joueur ++
+	comparer combi à trouver
+	afficher jeu joueur
+	attendre appui sur entrée
+    tant que personne n'a gagné
     
     return joueur gagnant
   */
 
   printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[1]->nom, joueurs[0]->nom);
-  saisie_combi(joueurs[0]->combi_a_trouver);
+  saisie_combi(joueurs[1]->combi_a_trouver);
   CLEAR_SCREEN;
   printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[0]->nom, joueurs[1]->nom);
-  saisie_combi(joueurs[1]->combi_a_trouver);
+  saisie_combi(joueurs[0]->combi_a_trouver);
   CLEAR_SCREEN;
 
   printf("quand vous êtes prêts, appuyez sur entrée...");
@@ -54,10 +36,11 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
   do{
     i = i?0:1; // passe à l'autre joueur
     CLEAR_SCREEN;
-    afficher_jeu(joueurs[i]);
+    afficher_jeu(joueurs[i]); // affichage des essais passés et des resultats passés
     saisie_combi(combi_saisie);
-    res[i] = comparer(combi_saisie, joueurs[i]);
-    afficher_jeu(joueurs[i]);
+    res[i] = comparer(combi_saisie, joueurs[i]); // retourne 1 si le joueur a gagné
+    CLEAR_SCREEN;
+    afficher_jeu(joueurs[i]); // affiche le resultat de l'essai immédiat
     tempo(5); // secondes
       
   } while (!res[i] && joueurs[i]->nb_coups < NB_COUPS_MAX);
@@ -70,28 +53,32 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
 int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 {
   /*
-    calc_combinaison
-    choisir nombre de coups max
+    générer combinaison
     
-    tant que pas gagné et nb_coups < nb_coups_max:
+    faire
         afficher interface
 	attendre saisie
 	incrementer nb_coups
 	comparer saisie à combi à trouver
 	afficher resultat
+    tant que pas gagné et nb_coups < nb_coups_max:
 		
   */
 
-  printf("quand vous êtes prêts, appuyez sur entrée...");
+  printf("Génération de la combinaison... ");
+  combi_rand(joueur);
+  printf("Combinaison générée!\n");
+
+  printf("Quand vous êtes prêts, appuyez sur entrée.");
   getc();
   int combi_saisie[NB_PIONS];
   do{
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]);
     saisie_combi(combi_saisie);
-    res = comparer(combi_saisie, joueurs[i]);
+    res = comparer(joueurs[i], combi_saisie);
     afficher_jeu(joueurs[i]);
-      scanf("appuyez sur entrée pour passer au joueur suivant\n");
+      scanf("Appuyez sur entrée pour passer au joueur suivant.\n");
     if(i)
       i=0;
     else
@@ -129,6 +116,8 @@ void saisie_combi(int * combi)
   int l = 0, i = 0;
   char saisie[30];
 
+  printf("Veuillez rentrer votre combinaison sous la forme \" x1x2x3x4 \" où xi représente la couleur.\n");
+
   do{
     l=0;i=0;
     scanf("%s", saisie);
@@ -145,9 +134,6 @@ void saisie_combi(int * combi)
       }while(saisie[++i] && l<NB_PIONS);
     if(l<NB_PIONS)
       printf("vous n'avez pas placé assez de pions...\n");
-  }while(l<NB_PIONS);
+  } while(l<NB_PIONS);
 
-  for(int j=0; j<NB_PIONS; j++)
-    combi[j] = 
-  printf("\n");
 }

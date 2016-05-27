@@ -31,12 +31,6 @@ int nb_lignes (FILE * dict)
     return nb_lignes;
 }
 
-int main()
-{
-    nb_lignes();
-    return 0;
-}
-
 
 // prend en argument le nb de combi dans le dictionnaire et retourne en nombre aléatoire compris entre 0 et nb_combi_dict - 1
 int random_number(FILE * dict)
