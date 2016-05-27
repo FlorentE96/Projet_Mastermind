@@ -13,4 +13,6 @@ void get_gnuplot_trace_algo_1(void);
 
 void get_average_value_algo_1(void);
 
+void zero_joueur (struct Joueur * joueur);
+
 #endif
