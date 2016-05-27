@@ -6,9 +6,11 @@
 #define MAX_COMBI (10000)
 #define MAX_COUPS (100)
 #define MAX_NAME (30)
+#define CLEAR_SCREEN {system("clear");}
 
 struct Joueur
-{   char nom[MAX_NAME];
+{
+    char nom[MAX_NAME];
     int nb_pts;
     int nb_coups;
     int combi_a_trouver[NB_PIONS];

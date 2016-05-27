@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-<<<<<<< HEAD
 #include "fonctions.h"
 #include "gestion_jeu.h"
 
@@ -16,7 +15,7 @@ struct Joueur
     int combi_a_trouver[NB_PIONS];
     int combi_passe[MAX_COUPS][NB_PIONS];
     int resultats[MAX_COUPS][2];
-=======
+
 #define TAILLE_MAX 10
 #define NB_PIONS 4
 #define MAX_COUPS 10
@@ -30,7 +29,7 @@ struct Joueur{
   int combi_a_trouver[NB_PIONS];
   int combinaisons_passees[MAX_COUPS][NB_PIONS];
   int resultats_passes[MAX_COUPS][2];  
->>>>>>> ddbb549b0bd6c687ecdad3f649d137fd32e85389
+
 };
 
 void affichage_1();
@@ -38,7 +37,7 @@ void affichage_2();
 void Mastermind();
 
 
-<<<<<<< HEAD
+
 
 void MasterMind (void)
 {
@@ -117,7 +116,7 @@ void MasterMind (void)
             Gestion_Jeu_ordi(ordi); //nom fonction à modifier
             //à finir	
         }
-=======
+
 void Mastermind (void)
 { 
   printf("Si vous voulez jouer à MasterMind, appuyer sur entrée\n");
@@ -177,7 +176,7 @@ void affichage_1(void)
       if (c =='1'){
 	Mastermind();
       }
->>>>>>> ddbb549b0bd6c687ecdad3f649d137fd32e85389
+
     }
 }
 
