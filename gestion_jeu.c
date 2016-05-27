@@ -104,10 +104,50 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 
 void afficher_jeu(struct Joueur * joueur)
 {
-  //
+  /*
+    affiche toutes les combinaisons passées du joueur et chaque resultat
+    affiche le score du joueur
+   */
+  for(int i = 1; i < joueur->nb_coups; i++)
+    {
+      for(int j = 0; j < NB_PIONS; j++)
+	{
+	  printf("%d ", joueur->combinaisons_passees[i][j]);
+	}
+      printf("\t");
+      for(int j = 0;  j < 2 ; j++)
+	{
+	  printf("bien placés : %d ; mal placés : %d", joueurs->resultats_passes[i][0], joueurs->resultats_passes[i][1]);
+	}
+      printf("\n");
+    }
 }
 
 void saisie_combi(int * combi)
 {
-  //
+  
+  int l = 0, i = 0;
+  char saisie[30];
+
+  do{
+    l=0;i=0;
+    scanf("%s", saisie);
+
+    do
+      {
+	if(saisie[i]>='0' && saisie[i]<='9')
+	  {
+	    combi[l] = saisie[i] - '0';
+	    l++;
+	  }
+	else
+	  printf("'%c' n'est pas une couleur. Ce caractère sera ignoré.\n", saisie[i]);
+      }while(saisie[++i] && l<NB_PIONS);
+    if(l<NB_PIONS)
+      printf("vous n'avez pas placé assez de pions...\n");
+  }while(l<NB_PIONS);
+
+  for(int j=0; j<NB_PIONS; j++)
+    combi[j] = 
+  printf("\n");
 }
