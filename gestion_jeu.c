@@ -56,10 +56,10 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]);
     saisie_combi(combi_saisie);
-    joueurs[i]->nb_coups++;
     res[i] = comparer(combi_saisie, joueurs[i]);
     afficher_jeu(joueurs[i]);
     tempo(5); // secondes
+      
   } while (!res[i] && joueurs[i]->nb_coups < NB_COUPS_MAX);
   
   if(res[0] || joueurs[1]->nb_coups >= NB_COUPS_MAX)
@@ -91,7 +91,7 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
     saisie_combi(combi_saisie);
     res = comparer(combi_saisie, joueurs[i]);
     afficher_jeu(joueurs[i]);
-    tempo(5); // secondes
+      scanf("appuyez sur entrée pour passer au joueur suivant\n");
     if(i)
       i=0;
     else
