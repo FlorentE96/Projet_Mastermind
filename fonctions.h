@@ -26,7 +26,7 @@ void copy_tab(int * source, int * destination, int taille);
 
 void print_array_n (int *tableau, int taille);
 
-void comparaison(struct Joueur *joueur, int proposition[]);
+int comparaison(struct Joueur *joueur, int proposition[]);
 
 void init_player_keep_score(struct Joueur *joueur);
 
