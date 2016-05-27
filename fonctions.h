@@ -30,4 +30,8 @@ int comparaison(struct Joueur *joueur, int proposition[]);
 
 void init_player_keep_score(struct Joueur *joueur);
 
+int nb_rand();
+
+void combi_rand(struct Joueur * joueur);
+
 #endif

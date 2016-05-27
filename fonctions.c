@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
 #include "fonctions.h"
 
 
@@ -54,7 +56,7 @@ void print_array_n (int *tableau, int taille)
  Avec tableau = {1, 2, 3, 4}
  exemple : comparaison(&joueur_1, tableau)
   */
-void comparaison(struct Joueur *joueur, int proposition[])
+int comparaison(struct Joueur *joueur, int proposition[])
 {
     joueur->nb_coups ++;
     int combi[NB_PIONS];
@@ -81,6 +83,13 @@ void comparaison(struct Joueur *joueur, int proposition[])
             }
         }
     }
+    
+    if(joueur->resultats_passes[joueur->nb_coups][0] == 4)
+    {
+        return 1;
+    }
+    
+    else return 0;
 }
 
 
@@ -99,6 +108,20 @@ void init_player_keep_score(struct Joueur *joueur)
         joueur->combinaisons_passees[m][1] = 0;
         joueur->combinaisons_passees[m][2] = 0;
         joueur->combinaisons_passees[m][3] = 0;
+    }
+}
+
+int nb_rand()
+{
+    return rand()%(NB_COULEURS);
+}
+
+
+void combi_rand(struct Joueur * joueur)
+{
+    for(int i = 0; i < NB_PIONS; i ++)
+    {
+        joueur->combi_a_trouver[i] = nb_rand();
     }
 }
 
