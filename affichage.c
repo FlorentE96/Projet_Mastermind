@@ -9,22 +9,25 @@
 void Mastermind ()
 {
   CLEAR_SCREEN;
-  printf("Si vous voulez jouer à MasterMind, appuyez sur entrée\n");
-  if (getchar()=='\n')
+  char c=0;
+  printf("\t***************************************\n");
+  printf("\t* Bienvenue dans le jeu de Mastermind *\n");
+  printf("\t***************************************\n\n");
+  printf("Veuillez choisir le mode de jeu ('0' (mode ordinateur), '1' joueur ou '2' joueurs).\nEntrez n'importe quel autre caractère pour quitter.\n");
+  c = getchar();
+  switch(c)
     {
-      printf("Quel est le nombre de joueurs? 0 (mode ordinateur), 1 joueur ou 2?\n");
-      if (getchar()=='1')
-	{
-	  affichage_1();
-	}
-      if (getchar()=='2')
-	{
-	  affichage_2();
-	}
-      if (getchar()=='0')
-	{
-	  affichage_0();	
-	}
+    case '1':
+      affichage_1();
+      break;
+    case '2':
+      affichage_2();
+      break;
+    case '3':
+      affichage_0();
+      break;
+    default:
+      break;
     }
 }
 

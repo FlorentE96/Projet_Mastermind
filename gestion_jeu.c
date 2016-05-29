@@ -30,11 +30,14 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
   CLEAR_SCREEN;
 
   printf("quand vous êtes prêts, appuyez sur entrée...");
+  flush();
   getchar();
 
   int i=1; // variable correspondant au joueur. on commence à 1 parce qu'on passe à l'autre joueur au début de la boucle
   int combi_saisie[NB_PIONS];
   int res[2] = {0,};
+  init_player_keep_score(&joueurs[0]);
+  init_player_keep_score(&joueurs[1]);
   do{
     i = i?0:1; // passe à l'autre joueur
     CLEAR_SCREEN;
@@ -43,7 +46,8 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     res[i] = comparaison(&joueurs[i], combi_saisie); // retourne 1 si le joueur a gagné
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]); // affiche le resultat de l'essai immédiat
-    printf("appuyez sur \"entrée\" pour passer au joueur suivant\n");
+    printf("\nappuyez sur \"entrée\" pour passer au joueur suivant\n");
+    flush();
     getchar();
       
   } while (!res[i] && joueurs[i].nb_coups < MAX_COUPS);
@@ -94,8 +98,10 @@ void afficher_jeu(struct Joueur joueur)
     affiche toutes les combinaisons passées du joueur et chaque resultat
     affiche le score du joueur
    */
+  printf("Joueur : %s.\tNombre de coups restant : %d.\n\n", joueur.nom, MAX_COUPS - joueur.nb_coups);
   for(int i = 1; i <= joueur.nb_coups; i++)
     {
+      printf("\t");
       for(int j = 0; j < NB_PIONS; j++)
 	{
 	  printf("%d ", joueur.combinaisons_passees[i][j]);
