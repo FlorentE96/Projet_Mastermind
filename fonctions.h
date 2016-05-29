@@ -34,4 +34,6 @@ int nb_rand();
 
 void combi_rand(struct Joueur * joueur);
 
+void flush(void);
+
 #endif

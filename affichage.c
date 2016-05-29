@@ -31,7 +31,7 @@ void Mastermind ()
 void affichage_0(void)
 {
   CLEAR_SCREEN;
-  printf("vous avez choisi le mode ordinateur\n");
+  printf("Vous avez choisi le mode ordinateur\n");
   struct Joueur ordi;
   //initialise nb de coups et score
   ordi.nb_coups = 0;
@@ -42,13 +42,14 @@ void affichage_0(void)
     { 
       zero_joueur(&ordi);
       //affiche RESULTATS
-      printf("\n nom: %s \n nombre de coups: %d\n", ordi.nom, ordi.nb_coups);
+      printf("\n Nom: %s \n Nombre de coups: %d\n", ordi.nom, ordi.nb_coups);
       // Gagner ou pas ? dépend du return de gestion jeu mono
       
       ordi.nb_pts = ordi.nb_pts + ordi.nb_coups;//score
       ordi.nb_coups = 0; //réinitialise le nb de coups
-      printf("pour rejouer appuyer sur entrée. Appuyer sur 1 pour changer de mode\n");
-      scanf("%c",&c);
+      printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode.\n");
+      flush();
+      c = getchar();
       if (c =='1')
 	{
 	  Mastermind();
@@ -59,7 +60,7 @@ void affichage_0(void)
 void affichage_1(void)
 {
   CLEAR_SCREEN;
-  printf("nom du joueur?\n");
+  printf("Nom du joueur?\n");
   struct Joueur Joueur1;
   scanf("%s",Joueur1.nom);
   fflush(stdin);
@@ -67,7 +68,7 @@ void affichage_1(void)
   Joueur1.nb_coups = 0;
   Joueur1.nb_pts = 0;
   
-  printf("bonjour %s : mode 1 joueur.\n", Joueur1.nom);
+  printf("\nBonjour %s ! Mode 1 joueur.\n", Joueur1.nom);
   
   char c;
   scanf("%c",&c);
@@ -76,12 +77,12 @@ void affichage_1(void)
       monojoueur(&Joueur1); //nom fonction à modifier
       
       //affiche RESULTATS
-      printf("\n nom: %s \n nombre de coups: %d\n", Joueur1.nom, Joueur1.nb_coups);
+      printf("\n Nom: %s \n Nombre de coups: %d\n", Joueur1.nom, Joueur1.nb_coups);
       // Gagner ou pas ? dépend du return de gestion jeu mono
       
       Joueur1.nb_pts = Joueur1.nb_pts + Joueur1.nb_coups;//score
       Joueur1.nb_coups = 0; //réinitialise le nb de coups
-      printf("pour rejouer appuyer sur entrée. Appuyer sur 1 pour changer de mode\n");
+      printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode\n");
       scanf("%c",&c);
       if (c =='1')
 	{
@@ -94,7 +95,7 @@ void affichage_1(void)
 void affichage_2(void)
 {
   CLEAR_SCREEN;
-  printf("nom des joueurs?\n Joueur 1:");
+  printf("Nom des joueurs?\n Joueur 1:");
   struct Joueur joueurs [2];
   
   scanf("%s",joueurs[0].nom);
@@ -115,8 +116,8 @@ void affichage_2(void)
       multijoueur(joueurs); //nom fonction à modifier
       
       //affiche RÉSULTATS
-      printf("\n nom: %s \n nombre de coups: %d\n", joueurs[0].nom, joueurs[0].nb_coups );
-      printf("\n nom: %s \n nombre de coups: %d \n", joueurs[1].nom, joueurs[1].nb_coups);
+      printf("\n Nom: %s \n Nombre de coups: %d\n", joueurs[0].nom, joueurs[0].nb_coups );
+      printf("\n Nom: %s \n Nombre de coups: %d \n", joueurs[1].nom, joueurs[1].nb_coups);
       // Qui a gagné? dépend du return de gestion jeu multi
       
       joueurs[0].nb_pts = joueurs[0].nb_pts + joueurs[0].nb_coups; //modifie score
@@ -124,7 +125,7 @@ void affichage_2(void)
       joueurs[1].nb_pts = joueurs[1].nb_pts + joueurs[1].nb_coups;
       joueurs[1].nb_coups = 0;
       
-      printf("pour rejouer appuyer sur entrée, pour changer de mode appuyer sur 1\n");
+      printf("Pour rejouer appuyer sur entrée, pour changer de mode appuyer sur 1\n");
       scanf("%c",&c);
       if (c =='1')
         {
@@ -132,10 +133,3 @@ void affichage_2(void)
         }
     }
 }
-
-/*
-  int main (int argc, char *argv[])
-  {
-  Mastermind();
-  return 0;
-  }*/

@@ -61,6 +61,7 @@ int comparaison(struct Joueur *joueur, int proposition[])
   joueur->nb_coups ++;
   int combi[NB_PIONS];
   copy_tab(joueur->combi_a_trouver, combi, NB_PIONS);
+  copy_tab(proposition, joueur->combinaisons_passees[joueur->nb_coups], NB_PIONS);
   
   for (int i = 0; i < NB_PIONS; i ++)
     {
@@ -123,3 +124,8 @@ void combi_rand(struct Joueur * joueur)
     }
 }
 
+// sert à vider le stream stdin pour enlever les '\n' qui restent.
+void flush(void)
+{
+  while ((getchar()) != '\n');
+}

@@ -3,7 +3,6 @@
 #include "fonctions.h"
 #include "gestion_jeu.h"
 
-
 int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnant (joueur 0 ou joueur 1)
 {
   /*
@@ -45,7 +44,7 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]); // affiche le resultat de l'essai immédiat
     printf("appuyez sur \"entrée\" pour passer au joueur suivant\n");
-    getchar(); // secondes
+    getchar();
       
   } while (!res[i] && joueurs[i].nb_coups < MAX_COUPS);
   
@@ -71,7 +70,7 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 
   printf("Génération de la combinaison... ");
   combi_rand(joueur);
-  printf("Combinaison générée!");
+  printf("Combinaison générée! DEBUG : ");
   for(int i=0; i<4; i++) printf("%d ", joueur->combi_a_trouver[i]);
   printf("\n");
   printf("Quand vous êtes prêts, appuyez sur entrée.");
@@ -85,10 +84,8 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
     saisie_combi(combi_saisie);
     res = comparaison(joueur, combi_saisie);
   } while (!res && joueur->nb_coups <= MAX_COUPS);
-  
-  if(res)
-    return 1;
-  return 0;
+
+  return res; // retourne gagné ou pas gagné.
 }
 
 void afficher_jeu(struct Joueur joueur)
@@ -97,7 +94,7 @@ void afficher_jeu(struct Joueur joueur)
     affiche toutes les combinaisons passées du joueur et chaque resultat
     affiche le score du joueur
    */
-  for(int i = 0; i < joueur.nb_coups; i++)
+  for(int i = 1; i <= joueur.nb_coups; i++)
     {
       for(int j = 0; j < NB_PIONS; j++)
 	{
@@ -132,7 +129,13 @@ void saisie_combi(int * combi)
       } while(saisie[++i] && l<NB_PIONS);
     
     if(l<NB_PIONS)
-      printf("vous n'avez pas placé assez de pions...\n");
+      printf("Vous n'avez pas placé assez de pions... Veuillez recommencer.\n");
+    if(strlen(saisie) > NB_PIONS)
+      {
+	printf("Vous avez entré trop de couleurs. Seules les %d premières seront retenues. Appuyez sur entrée pour continuer\n", NB_PIONS);
+	flush();
+	getchar();
+      }
   } while(l<NB_PIONS);
 
 }
