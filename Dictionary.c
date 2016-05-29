@@ -10,27 +10,12 @@ int nb_combi_dict(FILE * dict)
   while(!feof(dict))
     {
       fgets(line, 100, dict);
-      if(line[0] != ' ' && line[0] != '#' && line[0] != '') nb_line ++;
+      if(line[0] != ' ' && line[0] != '#' && line[0] != 0) nb_line ++;
     }
   
   rewind(dict);
   return nb_line;
 }
-
-int nb_lignes (FILE * dict)
-{
-    int car;
-    int nb_lignes = 0;
-    FILE *fp;
-    
-    while ((car = getc(fp)) != EOF)
-    {
-        if (car == '\n')
-            ++nb_lignes;
-    }
-    return nb_lignes;
-}
-
 
 // prend en argument le nb de combi dans le dictionnaire et retourne en nombre aléatoire compris entre 0 et nb_combi_dict - 1
 int random_number(FILE * dict)
@@ -46,7 +31,7 @@ void get_combi_dict(FILE * dict, int * combi)
     int line_count = 0;
     while(line_count != random_number(dict) + 1)
     {
-        if(line[0] != ' ' && line[0] != '#' && line[0] != '') line_count++;
+        if(line[0] != ' ' && line[0] != '#' && line[0] != 0) line_count++;
         fgets(line, 100, dict);
     }
 }

@@ -1,19 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "fonctions.h"
 #include "gestion_jeu.h"
 #include "zero_joueur.h"
-void affichage_0();
-void affichage_1();
-void affichage_2();
-void Mastermind();
+#include "affichage.h"
 
-void MasterMind (void)
+void Mastermind ()
 {
-  printf("Si vous voulez jouer à MasterMind, appuyez sur entrée");
+  CLEAR_SCREEN;
+  printf("Si vous voulez jouer à MasterMind, appuyez sur entrée\n");
   if (getchar()=='\n')
     {
-      printf("\n Quel est le nombre de joueurs? 0 (mode ordinateur), 1 joueur ou 2?\n");
+      printf("Quel est le nombre de joueurs? 0 (mode ordinateur), 1 joueur ou 2?\n");
       if (getchar()=='1')
 	{
 	  affichage_1();
@@ -31,17 +30,17 @@ void MasterMind (void)
 
 void affichage_0(void)
 {
+  CLEAR_SCREEN;
   printf("vous avez choisi le mode ordinateur\n");
   struct Joueur ordi;
   //initialise nb de coups et score
   ordi.nb_coups = 0;
   ordi.nb_pts = 0;
-  printf("\n pour commencer le jeu appuyer sur entrée\n");
   char c;
   scanf("%c", &c);
   while(c=='\n')
     { 
-      zero_joueur(ordi); // à modifier
+      zero_joueur(&ordi);
       //affiche RESULTATS
       printf("\n nom: %s \n nombre de coups: %d\n", ordi.nom, ordi.nb_coups);
       // Gagner ou pas ? dépend du return de gestion jeu mono
@@ -59,6 +58,7 @@ void affichage_0(void)
 
 void affichage_1(void)
 {
+  CLEAR_SCREEN;
   printf("nom du joueur?\n");
   struct Joueur Joueur1;
   scanf("%s",Joueur1.nom);
@@ -67,8 +67,7 @@ void affichage_1(void)
   Joueur1.nb_coups = 0;
   Joueur1.nb_pts = 0;
   
-  printf("bonjour %s : mode 1joueur.\n", Joueur1.nom);
-  printf("\n pour commencer le jeu appuyer sur entrée\n");
+  printf("bonjour %s : mode 1 joueur.\n", Joueur1.nom);
   
   char c;
   scanf("%c",&c);
@@ -94,6 +93,7 @@ void affichage_1(void)
 
 void affichage_2(void)
 {
+  CLEAR_SCREEN;
   printf("nom des joueurs?\n Joueur 1:");
   struct Joueur joueurs [2];
   
@@ -107,7 +107,6 @@ void affichage_2(void)
   joueurs[1].nb_pts = 0;
   
   printf("\n bonjour %s et %s\n", joueurs[0].nom, joueurs[1].nom);
-  printf("\n pour commencer le jeu appuyer sur entrée\n");
   
   char  c;
   scanf("%c",&c);

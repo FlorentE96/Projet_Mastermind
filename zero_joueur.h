@@ -15,4 +15,6 @@ void get_average_value_algo_1(void);
 
 void zero_joueur (struct Joueur * joueur);
 
+void zero_joueur_detailed(struct Joueur * joueur, int * essai);
+
 #endif

@@ -1,7 +1,7 @@
-#include "fonctions.h"
-#include "zero_joueur.h"
 #include <stdio.h>
 #include <time.h>
+#include "affichage.h"
+#include "fonctions.h"
 
 int main ()
 {
@@ -25,6 +25,7 @@ int main ()
 //    struct Joueur ordi;
 //    init_player_keep_score(&ordi);
 //    zero_joueur(&ordi);
-    
-    return 0;
+  Mastermind();
+  
+  return 0;
 }

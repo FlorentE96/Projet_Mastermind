@@ -51,45 +51,45 @@ void print_array_n (int *tableau, int taille)
 
 /* compare la combinaison à trouver stockée dans le joueur "joueur" mis en entrée (pointeur), met à jour l'historique du joueur (combinaison passée, le résutat de la combinaison etc ) et incrémente le nombre de coups du joueur
  attention : ce truc ne fait pas de remise à 0, c'est "init_player_keep_score" qui le fait 
- Ce truc ne retourne rien
+ Retourne 1 si la combinaison est trouvée, 0 si pas encore
  
  Avec tableau = {1, 2, 3, 4}
  exemple : comparaison(&joueur_1, tableau)
   */
 int comparaison(struct Joueur *joueur, int proposition[])
 {
-    joueur->nb_coups ++;
-    int combi[NB_PIONS];
-    copy_tab(joueur->combi_a_trouver, combi, NB_PIONS);
-    
-    for (int i = 0; i < NB_PIONS; i ++)
+  joueur->nb_coups ++;
+  int combi[NB_PIONS];
+  copy_tab(joueur->combi_a_trouver, combi, NB_PIONS);
+  
+  for (int i = 0; i < NB_PIONS; i ++)
     {
-        if(combi[i] == proposition[i])
+      if(combi[i] == proposition[i])
         {
-            combi[i] = -1;
-            joueur->resultats_passes[joueur->nb_coups][0] ++;
+	  combi[i] = -1;
+	  joueur->resultats_passes[joueur->nb_coups][0] ++;
         }
     }
-    
-    for (int i = 0; i < NB_PIONS; i ++)
+  
+  for (int i = 0; i < NB_PIONS; i ++)
     {
-        for (int j = 0; j < NB_PIONS; j ++)
+      for (int j = 0; j < NB_PIONS; j ++)
         {
-            if(j != i && combi[j] != -1 && combi[j] == proposition[i])
+	  if(j != i && combi[j] != -1 && combi[j] == proposition[i])
             {
-                joueur->resultats_passes[joueur->nb_coups][1] ++;
-                combi[j] = -1;
-                break;
+	      joueur->resultats_passes[joueur->nb_coups][1] ++;
+	      combi[j] = -1;
+	      break;
             }
         }
     }
-    
-    if(joueur->resultats_passes[joueur->nb_coups][0] == 4)
+  
+  if(joueur->resultats_passes[joueur->nb_coups][0] == 4)
     {
-        return 1;
+      return 1;
     }
-    
-    else return 0;
+  
+  else return 0;
 }
 
 
@@ -104,10 +104,8 @@ void init_player_keep_score(struct Joueur *joueur)
     {
         joueur->resultats_passes[m][0] = 0;
         joueur->resultats_passes[m][1] = 0;
-        joueur->combinaisons_passees[m][0] = 0;
-        joueur->combinaisons_passees[m][1] = 0;
-        joueur->combinaisons_passees[m][2] = 0;
-        joueur->combinaisons_passees[m][3] = 0;
+	for(int n = 0; n < NB_PIONS; n++)
+	  joueur->combinaisons_passees[m][n] = 0;
     }
 }
 

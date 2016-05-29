@@ -1,6 +1,8 @@
 #include <stdlib.h>
-#include <stdout.h>
+#include <stdio.h>
 #include "fonctions.h"
+#include "gestion_jeu.h"
+
 
 int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnant (joueur 0 ou joueur 1)
 {
@@ -21,31 +23,33 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     return joueur gagnant
   */
 
-  printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[1]->nom, joueurs[0]->nom);
-  saisie_combi(joueurs[1]->combi_a_trouver);
+  printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[1].nom, joueurs[0].nom);
+  saisie_combi(joueurs[1].combi_a_trouver);
   CLEAR_SCREEN;
-  printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[0]->nom, joueurs[1]->nom);
-  saisie_combi(joueurs[0]->combi_a_trouver);
+  printf("%s va te cacher, %s choisis ta combinaison : \n", joueurs[0].nom, joueurs[1].nom);
+  saisie_combi(joueurs[0].combi_a_trouver);
   CLEAR_SCREEN;
 
   printf("quand vous êtes prêts, appuyez sur entrée...");
-  getc();
+  getchar();
 
   int i=1; // variable correspondant au joueur. on commence à 1 parce qu'on passe à l'autre joueur au début de la boucle
-  
+  int combi_saisie[NB_PIONS];
+  int res[2] = {0,};
   do{
     i = i?0:1; // passe à l'autre joueur
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]); // affichage des essais passés et des resultats passés
     saisie_combi(combi_saisie);
-    res[i] = comparer(combi_saisie, joueurs[i]); // retourne 1 si le joueur a gagné
+    res[i] = comparaison(&joueurs[i], combi_saisie); // retourne 1 si le joueur a gagné
     CLEAR_SCREEN;
     afficher_jeu(joueurs[i]); // affiche le resultat de l'essai immédiat
-    tempo(5); // secondes
+    printf("appuyez sur \"entrée\" pour passer au joueur suivant\n");
+    getchar(); // secondes
       
-  } while (!res[i] && joueurs[i]->nb_coups < NB_COUPS_MAX);
+  } while (!res[i] && joueurs[i].nb_coups < MAX_COUPS);
   
-  if(res[0] || joueurs[1]->nb_coups >= NB_COUPS_MAX)
+  if(res[0] || joueurs[1].nb_coups >= MAX_COUPS)
     return 0;
   return 1;
 }
@@ -67,46 +71,40 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 
   printf("Génération de la combinaison... ");
   combi_rand(joueur);
-  printf("Combinaison générée!\n");
-
+  printf("Combinaison générée!");
+  for(int i=0; i<4; i++) printf("%d ", joueur->combi_a_trouver[i]);
+  printf("\n");
   printf("Quand vous êtes prêts, appuyez sur entrée.");
-  getc();
+  getchar();
   int combi_saisie[NB_PIONS];
+  int res=0;
+  init_player_keep_score(joueur);
   do{
     CLEAR_SCREEN;
-    afficher_jeu(joueurs[i]);
+    afficher_jeu(*joueur);
     saisie_combi(combi_saisie);
-    res = comparer(joueurs[i], combi_saisie);
-    afficher_jeu(joueurs[i]);
-      scanf("Appuyez sur entrée pour passer au joueur suivant.\n");
-    if(i)
-      i=0;
-    else
-      i=1;
-  } while (!res && joueurs[0]->nb_coups <= NB_COUPS_MAX && joueurs[1]->nb_coups <= NB_COUPS_MAX);
+    res = comparaison(joueur, combi_saisie);
+  } while (!res && joueur->nb_coups <= MAX_COUPS);
+  
   if(res)
     return 1;
   return 0;
 }
 
-void afficher_jeu(struct Joueur * joueur)
+void afficher_jeu(struct Joueur joueur)
 {
   /*
     affiche toutes les combinaisons passées du joueur et chaque resultat
     affiche le score du joueur
    */
-  for(int i = 1; i < joueur->nb_coups; i++)
+  for(int i = 0; i < joueur.nb_coups; i++)
     {
       for(int j = 0; j < NB_PIONS; j++)
 	{
-	  printf("%d ", joueur->combinaisons_passees[i][j]);
+	  printf("%d ", joueur.combinaisons_passees[i][j]);
 	}
       printf("\t");
-      for(int j = 0;  j < 2 ; j++)
-	{
-	  printf("bien placés : %d ; mal placés : %d", joueurs->resultats_passes[i][0], joueurs->resultats_passes[i][1]);
-	}
-      printf("\n");
+      printf("bien placés : %d ; mal placés : %d\n", joueur.resultats_passes[i][0], joueur.resultats_passes[i][1]);
     }
 }
 
@@ -131,7 +129,8 @@ void saisie_combi(int * combi)
 	  }
 	else
 	  printf("'%c' n'est pas une couleur. Ce caractère sera ignoré.\n", saisie[i]);
-      }while(saisie[++i] && l<NB_PIONS);
+      } while(saisie[++i] && l<NB_PIONS);
+    
     if(l<NB_PIONS)
       printf("vous n'avez pas placé assez de pions...\n");
   } while(l<NB_PIONS);

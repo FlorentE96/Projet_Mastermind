@@ -1,0 +1,7 @@
+J'ai testé le mode 1 joueur. Il y a plusisuers problèmes:
+     Justine : dès que le jeu est fini, une autre partie se lance directement. Ca doit venir du souci de flush sur le stream stdin.
+     Louis : ta fonction "comparaison" met n'importe quoi dans resultat_passes et ne copie rien dans combinaisons_passees.   Y'a aussi un souci avec	 la première combinaison de combinaisons_passees je crois. Lance le programme et vois par toi même.
+
+J'ai pas testé les mode 0 joueurs et multijoueurs mais vu les problèmes ci-dessus, ils marchent surement pas. On a jusqu'à demain 17h pour finir le code ET le rapport => on est dans la merde.
+
+Demain je ferai le dictionnaire et je testerai un peu le mode multijoueur, occupez vous du reste. Et faudrait que Gary s'occupe d'écrire quelques trucs dans le rapport, c'est pas comme si il avait été d'une grande aide.
