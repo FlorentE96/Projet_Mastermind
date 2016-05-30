@@ -6,30 +6,11 @@
 
 int main (int argc, char * argv[])
 {
-//    get_gnuplot_trace_algo_1();
-//    get_average_value_algo_1();
-    
-//    struct Joueur joueur_1;
-//    srand(time(NULL));
-//
-//    for(int i = 0; i < 10; i ++)
-//    {
-//        combi_rand(&joueur_1);
-//        printf("la combi est : ");
-//        print_array_n(joueur_1.combi_a_trouver, NB_PIONS);
-//    }
-
-    
-//    int combinaison[4] = {1, 2, 1, 4};
-//    test_algo_1(combinaison);
-    
-//    struct Joueur ordi;
-//    init_player_keep_score(&ordi);
-//    zero_joueur(&ordi);
   int opt, menu=0, nb_joueurs, dict_mode=0;
+  FILE * dico;
   if (argc<=1)
     menu = 1;
-  while((opt = getopt(argc, argv, "012dh:")) != -1)
+  while((opt = getopt(argc, argv, "012d:h")) != -1)
     {
       switch(opt)
 	{
@@ -44,6 +25,13 @@ int main (int argc, char * argv[])
 	  break;
 	case 'd':
 	  dict_mode = 1;
+	  dico = fopen(optarg, "r");
+	  if(dico == NULL){
+	    printf("impossible d'ouvrir le dictionnaire. Le jeu sera lancé en mode normal. Continuer.\n");
+	    flush();
+	    getchar();
+	    dict_mode = 0;
+	  }
 	  break;
 	case 'h':
 	  help();
@@ -51,6 +39,7 @@ int main (int argc, char * argv[])
 	}
 	  
     }
-  Mastermind(menu, nb_joueurs, dict_mode);
-  return 0;
+  Mastermind(menu, nb_joueurs, dict_mode, dico);
+  if(dict_mode == 1)
+    fclose(dico);
 }

@@ -6,7 +6,7 @@
 #include "zero_joueur.h"
 #include "affichage.h"
 
-void Mastermind (int mode_menu, int nb_joueurs, int dict)
+void Mastermind (int mode_menu, int nb_joueurs, int dico_mode, FILE * dico)
 {
   CLEAR_SCREEN;
   char c=0;
@@ -26,7 +26,7 @@ void Mastermind (int mode_menu, int nb_joueurs, int dict)
   switch(c)
     {
     case '1':
-      affichage_1();
+      affichage_1(dico_mode, dico);
       break;
     case '2':
       affichage_2();
@@ -65,12 +65,12 @@ void affichage_0(void)
     }
   if (c =='1')
     {
-      Mastermind(1,0,0);
+      Mastermind(1,0,0, 0);
     }
   
 }
 
-void affichage_1(void)
+void affichage_1(int dico_mode, FILE * dico)
 {
   CLEAR_SCREEN;
   printf("Nom du joueur?\n");
@@ -86,7 +86,7 @@ void affichage_1(void)
   scanf("%c",&c);
   while (c=='\n')
     {
-      int res = monojoueur(&Joueur1); 
+      int res = monojoueur(&Joueur1, dico_mode, dico); 
       
       //affiche RESULTATS
       printf("\n Nom: %s \n Nombre de coups: %d\n", Joueur1.nom, Joueur1.nb_coups);
@@ -107,7 +107,7 @@ void affichage_1(void)
     }
   if (c =='1')
     {
-      Mastermind(1,0,0);
+      Mastermind(1, 0, 1, dico);
     }
 }
 
@@ -171,7 +171,7 @@ void affichage_2(void)
     }
   if (c =='1')
     {
-      Mastermind(1,0,0);
+      Mastermind(1, 0, 0, 0);
     }
 }
 
