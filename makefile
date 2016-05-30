@@ -1,5 +1,5 @@
-main : affichage.o Dictionary.o fonctions.o gestion_jeu.o zero_joueur.o main.o
-	gcc  affichage.o Dictionary.o fonctions.o gestion_jeu.o zero_joueur.o main.o -o main
+mmind : affichage.o Dictionary.o fonctions.o gestion_jeu.o zero_joueur.o main.o
+	gcc  affichage.o Dictionary.o fonctions.o gestion_jeu.o zero_joueur.o main.o -o mmind
 
 affichage.o: affichage.c fonctions.h gestion_jeu.h zero_joueur.h affichage.h
 	gcc -c -Wall -std=c99   affichage.c
@@ -21,5 +21,9 @@ zero_joueur.o: zero_joueur.c fonctions.h zero_joueur.h
 
 
 clean :
-	rm *.o
+	rm -f *.o
+#supprime tous les .o générés seulement s'ils existent
 
+cleanTempFiles :
+	rm -f *# *~
+# Supprime les fichiers temporaires s'ils existent
