@@ -109,12 +109,13 @@ void init_player_keep_score(struct Joueur *joueur)
     }
 }
 
+// génère une couleur aléatoire. Attention : il est nécessaire d'initialiser rand avec la fonction srand() avant d'utiliser cette fonction.
 int nb_rand()
 {
-  return rand()%(NB_COULEURS)+1;
+  return rand()%(NB_COULEURS);
 }
 
-
+// génère une combinaison aléatoire
 void combi_rand(struct Joueur * joueur)
 {
     for(int i = 0; i < NB_PIONS; i ++)
