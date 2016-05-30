@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 #include "affichage.h"
 #include "fonctions.h"
 
-int main ()
+int main (int argc, char * argv[])
 {
 //    get_gnuplot_trace_algo_1();
 //    get_average_value_algo_1();
@@ -24,7 +25,12 @@ int main ()
 //    struct Joueur ordi;
 //    init_player_keep_score(&ordi);
 //    zero_joueur(&ordi);
-  Mastermind();
+  for(int i = 0; i<argc; i++)
+    {
+      if(!strcmp(argv[i], "-h"))
+	help();
+    }
+    Mastermind();
   
   return 0;
 }
