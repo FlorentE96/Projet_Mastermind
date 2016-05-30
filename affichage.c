@@ -50,16 +50,18 @@ void affichage_0(void)
       printf("\n Nom: %s \n Nombre de coups: %d\n", ordi.nom, ordi.nb_coups);
       // Gagner ou pas ? dépend du return de gestion jeu mono
       
-      ordi.nb_pts = ordi.nb_pts + ordi.nb_coups;//score
+      ordi.nb_pts = ordi.nb_pts + MAX_COUPS-ordi.nb_coups;//score
       ordi.nb_coups = 0; //réinitialise le nb de coups
       printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode.\n");
       flush();
       c = getchar();
-      if (c =='1')
-	{
-	  Mastermind();
-	}
+      flush();
     }
+  if (c =='1')
+    {
+      Mastermind();
+    }
+  
 }
 
 void affichage_1(void)
@@ -68,7 +70,6 @@ void affichage_1(void)
   printf("Nom du joueur?\n");
   struct Joueur Joueur1;
   scanf("%s",Joueur1.nom);
-  fflush(stdin);
   //initialise nb de coups et score
   Joueur1.nb_coups = 0;
   Joueur1.nb_pts = 0;
@@ -79,20 +80,28 @@ void affichage_1(void)
   scanf("%c",&c);
   while (c=='\n')
     {
-      monojoueur(&Joueur1); //nom fonction à modifier
+      int res = monojoueur(&Joueur1); 
       
       //affiche RESULTATS
       printf("\n Nom: %s \n Nombre de coups: %d\n", Joueur1.nom, Joueur1.nb_coups);
-      // Gagner ou pas ? dépend du return de gestion jeu mono
-      
-      Joueur1.nb_pts = Joueur1.nb_pts + Joueur1.nb_coups;//score
+      // Gagner ou pas ? Retourne 1 si joueur à gagner, 0 sinon
+      if (res==1)
+	printf("Bravo vous avez Gagné!\n");
+      else
+	{
+	  printf("C'est dommage, la combinaison mystère était:\n");
+	  print_array_n(Joueur1.combi_a_trouver,NB_PIONS);
+	}
+      Joueur1.nb_pts = Joueur1.nb_pts + MAX_COUPS-Joueur1.nb_coups;//score
       Joueur1.nb_coups = 0; //réinitialise le nb de coups
       printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode\n");
+      flush();
       scanf("%c",&c);
-      if (c =='1')
-	{
-	  Mastermind();
-	}
+      flush();
+    }
+  if (c =='1')
+    {
+      Mastermind();
     }
 }
 
@@ -118,24 +127,45 @@ void affichage_2(void)
   scanf("%c",&c);
   while (c=='\n')
     {
-      multijoueur(joueurs); //nom fonction à modifier
+      int res = multijoueur(joueurs);
       
       //affiche RÉSULTATS
-      printf("\n Nom: %s \n Nombre de coups: %d\n", joueurs[0].nom, joueurs[0].nb_coups );
-      printf("\n Nom: %s \n Nombre de coups: %d \n", joueurs[1].nom, joueurs[1].nb_coups);
-      // Qui a gagné? dépend du return de gestion jeu multi
+      // Qui a gagné? Retourne 0 si c'est le joueur 1 qui a gagné, 1 si c'est le joueur 2,
+      if (res == 0)
+	{
+	  printf("Bravo %s vous avez trouvé la solution en %d coups\n", joueurs[0].nom,joueurs[0].nb_coups);
+	  printf("C'est dommage %s, la combinaison mystère était:\n", joueurs[1].nom);
+	  print_array_n(joueurs[1].combi_a_trouver,NB_PIONS);
+	}
+      if (res == 1)
+	{
+	  printf("Bravo %s vous avez trouvé la solution en %d coups\n", joueurs[1].nom,joueurs[1].nb_coups);
+	  printf("C'est dommage %s, la combinaison mystère était:\n", joueurs[0].nom);
+	  print_array_n(joueurs[0].combi_a_trouver,NB_PIONS);
+	}
+
+      /*else {
+	printf("C'est dommage %s, la combinaison mystère était:", joueurs[0].nom);
+	print_array_n(joueurs[0].combi_a_trouver,NB_PIONS);
+	printf("C'est dommage %s, la combinaison mystère était:", joueurs[1].nom);
+	print_array_n(joueurs[1].combi_a_trouver,NB_PIONS);
+	
+      */
+
       
-      joueurs[0].nb_pts = joueurs[0].nb_pts + joueurs[0].nb_coups; //modifie score
+      joueurs[0].nb_pts = joueurs[0].nb_pts + MAX_COUPS-joueurs[0].nb_coups; //modifie score
       joueurs[0].nb_coups = 0; //réinitialise le nb de coups
-      joueurs[1].nb_pts = joueurs[1].nb_pts + joueurs[1].nb_coups;
+      joueurs[1].nb_pts = joueurs[1].nb_pts + MAX_COUPS-joueurs[1].nb_coups;
       joueurs[1].nb_coups = 0;
       
       printf("Pour rejouer appuyer sur entrée, pour changer de mode appuyer sur 1\n");
+      flush();
       scanf("%c",&c);
-      if (c =='1')
-        {
-	  Mastermind();
-        }
+      flush();
+    }
+  if (c =='1')
+    {
+      Mastermind();
     }
 }
 
