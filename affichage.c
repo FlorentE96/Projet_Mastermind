@@ -6,7 +6,7 @@
 #include "zero_joueur.h"
 #include "affichage.h"
 
-void Mastermind ()
+void Mastermind (int mode_menu, int nb_joueurs, int dict)
 {
   CLEAR_SCREEN;
   char c=0;
@@ -15,8 +15,14 @@ void Mastermind ()
   printf("\t* "); printf(COLOR_BLUE); printf("Bienvenue dans le jeu de Mastermind"); printf(COLOR_GREEN); printf(" *\n");
   printf("\t***************************************\n\n");
   printf(COLOR_STD);
-  printf("Veuillez choisir le mode de jeu ('0' (mode ordinateur), '1' joueur ou '2' joueurs).\nEntrez n'importe quel autre caractère pour quitter.\n");
-  c = getchar();
+  if(mode_menu)
+    {
+      printf("Veuillez choisir le mode de jeu ('0' (mode ordinateur), '1' joueur ou '2' joueurs).\n");
+      printf("Entrez n'importe quel autre caractère pour quitter.\n");
+      c = getchar();
+    }
+  else
+    c = '0' +  nb_joueurs;
   switch(c)
     {
     case '1':
@@ -25,7 +31,7 @@ void Mastermind ()
     case '2':
       affichage_2();
       break;
-    case '3':
+    case '0':
       affichage_0();
       break;
     default:
@@ -59,7 +65,7 @@ void affichage_0(void)
     }
   if (c =='1')
     {
-      Mastermind();
+      Mastermind(1,0,0);
     }
   
 }
@@ -101,7 +107,7 @@ void affichage_1(void)
     }
   if (c =='1')
     {
-      Mastermind();
+      Mastermind(1,0,0);
     }
 }
 
@@ -165,7 +171,7 @@ void affichage_2(void)
     }
   if (c =='1')
     {
-      Mastermind();
+      Mastermind(1,0,0);
     }
 }
 

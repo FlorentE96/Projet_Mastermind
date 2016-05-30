@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <getopt.h>
 #include <string.h>
 #include "affichage.h"
 #include "fonctions.h"
@@ -25,12 +26,31 @@ int main (int argc, char * argv[])
 //    struct Joueur ordi;
 //    init_player_keep_score(&ordi);
 //    zero_joueur(&ordi);
-  for(int i = 0; i<argc; i++)
+  int opt, menu=0, nb_joueurs, dict_mode=0;
+  if (argc<=1)
+    menu = 1;
+  while((opt = getopt(argc, argv, "012dh:")) != -1)
     {
-      if(!strcmp(argv[i], "-h"))
-	help();
+      switch(opt)
+	{
+	case '0':
+	  nb_joueurs = 0;
+	  break;
+	case '1':
+	  nb_joueurs = 1;
+	  break;
+	case '2':
+	  nb_joueurs = 2;
+	  break;
+	case 'd':
+	  dict_mode = 1;
+	  break;
+	case 'h':
+	  help();
+	  break;
+	}
+	  
     }
-    Mastermind();
-  
+  Mastermind(menu, nb_joueurs, dict_mode);
   return 0;
 }
