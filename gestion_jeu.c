@@ -52,7 +52,7 @@ int multijoueur(struct Joueur * joueurs) // retourne le numéro du joueur gagnan
     flush();
     getchar();
       
-  } while (!res[i] && joueurs[i].nb_coups < MAX_COUPS);
+  } while (!res[i] && joueurs[i].nb_coups < MAX_COUPS); // tant qu'aucun des joueurs n'a gagné et qu'aucun n'a perdu
   
   if(res[0] || joueurs[1].nb_coups >= MAX_COUPS)
     return 0;
@@ -74,12 +74,11 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
 		
   */
   time_t t;
-  srand((unsigned) time(&t));
+  srand((unsigned) time(&t)); // initialisation de l'aléatoire
+  
   printf("Génération de la combinaison... ");
   combi_rand(joueur); // génère une combinaison aléatoire
-  printf("Combinaison générée! DEBUG : ");
-  for(int i=0; i<4; i++) printf("%d ", joueur->combi_a_trouver[i]);
-  printf("\n");
+  printf("Combinaison générée!\n ");
   printf("Quand vous êtes prêts, appuyez sur entrée.");
   getchar();
   int combi_saisie[NB_PIONS];

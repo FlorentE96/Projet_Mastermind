@@ -136,3 +136,23 @@ void affichage_2(void)
         }
     }
 }
+
+void help()
+{
+  printf("Bienvenue dans l'aide du mastermind!\n\n");
+  printf("Syntaxe de la commande : ");
+  printf(STYLE_BOLD);
+  printf("./mmind {[-0|-1|-2] [-d <dictionnaire>] [-h]\n");
+  printf(STYLE_NOBOLD);
+  printf(COLOR_RED);
+  printf("\t-0|-1|-2 : ");
+  printf(COLOR_STD);
+  printf("permet de choisir le nombre de joueurs.\n");
+  printf(COLOR_RED);
+  printf("\t-d <dictionnaire> : ");
+  printf(COLOR_STD);
+  printf("permet d'utiliser le dictionnaire, dont le chemin est spécifié par <dictionnaire>\n\n");
+  printf("Les paramètres de la ligne de commande sont en option.\nSi vous ne mettez aucun paramètre, un menu vous permettra de choisir les modes de jeu.\n\n");
+  printf("Appuyez sur entrée pour continuer et lancer le jeu en mode menu\n");
+  getchar();
+}
