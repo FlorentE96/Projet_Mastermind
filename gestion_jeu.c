@@ -89,7 +89,7 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
     afficher_jeu(*joueur);
     saisie_combi(combi_saisie);
     res = comparaison(joueur, combi_saisie);
-  } while (!res && joueur->nb_coups <= MAX_COUPS);
+  } while (!res && joueur->nb_coups < MAX_COUPS);
 
   return res; // retourne gagné ou pas gagné.
 }
