@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "time.h"
+#include <string.h>
+#include <time.h>
 #include "fonctions.h"
 #include "gestion_jeu.h"
 
