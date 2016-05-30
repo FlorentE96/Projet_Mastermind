@@ -53,6 +53,7 @@ void affichage_0(void)
       printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode.\n");
       flush();
       c = getchar();
+      flush();
     }
   if (c =='1')
     {
@@ -83,10 +84,10 @@ void affichage_1(void)
       printf("\n Nom: %s \n Nombre de coups: %d\n", Joueur1.nom, Joueur1.nb_coups);
       // Gagner ou pas ? Retourne 1 si joueur à gagner, 0 sinon
       if (res==1)
-	printf("Bravo vous avez Gagné!");
+	printf("Bravo vous avez Gagné!\n");
       else
 	{
-	  printf("C'est dommage, la combinaison mystère était:");
+	  printf("C'est dommage, la combinaison mystère était:\n");
 	  print_array_n(Joueur1.combi_a_trouver,NB_PIONS);
 	}
       Joueur1.nb_pts = Joueur1.nb_pts + MAX_COUPS-Joueur1.nb_coups;//score
@@ -94,7 +95,7 @@ void affichage_1(void)
       printf("Pour rejouer appuyez sur entrée. Appuyez sur 1 pour changer de mode\n");
       flush();
       scanf("%c",&c);
-      
+      flush();
     }
   if (c =='1')
     {
@@ -131,13 +132,13 @@ void affichage_2(void)
       if (res == 0)
 	{
 	  printf("Bravo %s vous avez trouvé la solution en %d coups\n", joueurs[0].nom,joueurs[0].nb_coups);
-	  printf("C'est dommage %s, la combinaison mystère était:", joueurs[1].nom);
+	  printf("C'est dommage %s, la combinaison mystère était:\n", joueurs[1].nom);
 	  print_array_n(joueurs[1].combi_a_trouver,NB_PIONS);
 	}
       if (res == 1)
 	{
 	  printf("Bravo %s vous avez trouvé la solution en %d coups\n", joueurs[1].nom,joueurs[1].nb_coups);
-	  printf("C'est dommage %s, la combinaison mystère était:", joueurs[0].nom);
+	  printf("C'est dommage %s, la combinaison mystère était:\n", joueurs[0].nom);
 	  print_array_n(joueurs[0].combi_a_trouver,NB_PIONS);
 	}
 
@@ -158,6 +159,7 @@ void affichage_2(void)
       printf("Pour rejouer appuyer sur entrée, pour changer de mode appuyer sur 1\n");
       flush();
       scanf("%c",&c);
+      flush();
     }
   if (c =='1')
     {
