@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "time.h"
 #include "fonctions.h"
 #include "gestion_jeu.h"
 
@@ -71,9 +72,10 @@ int monojoueur(struct Joueur * joueur) // retourne 1 si gagné, 0 si perdu
     tant que pas gagné et nb_coups < nb_coups_max:
 		
   */
-
+  time_t t;
+  srand((unsigned) time(&t));
   printf("Génération de la combinaison... ");
-  combi_rand(joueur);
+  combi_rand(joueur); // génère une combinaison aléatoire
   printf("Combinaison générée! DEBUG : ");
   for(int i=0; i<4; i++) printf("%d ", joueur->combi_a_trouver[i]);
   printf("\n");

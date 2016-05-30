@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
 #include "fonctions.h"
 
 
@@ -112,7 +111,7 @@ void init_player_keep_score(struct Joueur *joueur)
 
 int nb_rand()
 {
-    return rand()%(NB_COULEURS);
+  return rand()%(NB_COULEURS)+1;
 }
 
 

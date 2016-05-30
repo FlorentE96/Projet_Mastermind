@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <time.h>
 #include "affichage.h"
 #include "fonctions.h"
 
