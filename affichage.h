@@ -4,6 +4,7 @@
 #define COLOR_STD "\033[39m"
 #define COLOR_RED "\033[31m"
 #define COLOR_BLUE "\033[34m"
+#define COLOR_GREEN "\033[32m"
 #define STYLE_BOLD "\033[1m"
 #define STYLE_NOBOLD "\033[21m"
 

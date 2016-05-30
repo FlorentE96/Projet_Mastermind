@@ -10,9 +10,11 @@ void Mastermind ()
 {
   CLEAR_SCREEN;
   char c=0;
+  printf(COLOR_GREEN);
   printf("\t***************************************\n");
-  printf("\t* Bienvenue dans le jeu de Mastermind *\n");
+  printf("\t* "); printf(COLOR_BLUE); printf("Bienvenue dans le jeu de Mastermind"); printf(COLOR_GREEN); printf(" *\n");
   printf("\t***************************************\n\n");
+  printf(COLOR_STD);
   printf("Veuillez choisir le mode de jeu ('0' (mode ordinateur), '1' joueur ou '2' joueurs).\nEntrez n'importe quel autre caractère pour quitter.\n");
   c = getchar();
   switch(c)
